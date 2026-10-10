@@ -360,7 +360,7 @@ export default function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          service_id: 'service_ymsgsy9j',
+          service_id: 'service_ymsgy9j',
           template_id: 'template_hw839p2',
           user_id: 'CwNc9T_1kQF3015Zw',
           template_params: {
