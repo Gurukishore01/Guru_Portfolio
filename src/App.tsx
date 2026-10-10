@@ -344,16 +344,49 @@ export default function App() {
     setTimeout(() => setCopiedItem(null), 2500);
   };
 
-  // Form submit handler
-  const handleFormSubmit = (e: React.FormEvent) => {
+  // Form submit handler — send the contact form through EmailJS
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (formSubmitting) return;
+
     setFormSubmitting(true);
-    setTimeout(() => {
-      setFormSubmitting(false);
+    setFormSubmitted(false);
+
+    try {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_ymsgsy9j',
+          template_id: 'template_hw839p2',
+          user_id: 'CwNc9T_1kQF3015Zw',
+          template_params: {
+            from_name: formData.name.trim(),
+            from_email: formData.email.trim(),
+            message: formData.message.trim(),
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        const errorDetails = await response.text();
+        throw new Error(errorDetails || 'EmailJS could not send the message.');
+      }
+
       setFormSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormSubmitted(false), 5000);
-    }, 850);
+      window.setTimeout(() => setFormSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
+      window.alert(
+        'Your message could not be sent. Please try again or email gurukishore1208@gmail.com directly.'
+      );
+    } finally {
+      setFormSubmitting(false);
+    }
   };
 
   // Spread indicator
