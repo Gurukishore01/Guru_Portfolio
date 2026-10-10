@@ -784,3 +784,376 @@ body {
   background: rgba(0, 171, 240, 0.3);
   border-radius: 4px;
 }
+/*
+ * Responsive mobile reading layout for Guru_Portfolio.
+ * Append this block to the END of src/index.css.
+ * Desktop/tablet 3D flip-book styles remain unchanged.
+ */
+@media (max-width: 767px) {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    display: block;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-items: initial;
+    justify-content: initial;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  #root > div {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+    width: 100%;
+    padding: 0.75rem !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    overflow: visible !important;
+  }
+
+  #root > div > header {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 0.85rem;
+    padding: 0.75rem;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    border-radius: 0.85rem;
+  }
+
+  #root > div > header > div:nth-child(2) {
+    order: 3;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+
+  #root > div > header > div:nth-child(2) button {
+    min-height: 2.25rem;
+    padding: 0.45rem 0.65rem;
+  }
+
+  #root > div > header > div:last-child {
+    margin-left: auto;
+    gap: 0.35rem;
+  }
+
+  #root > div > header button[title="Replay Opening Transition"] {
+    display: none !important;
+  }
+
+  .bench-environment {
+    display: block !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    transform: none !important;
+    transform-origin: top center !important;
+    transition: none !important;
+  }
+
+  .bench-surface-shadow,
+  .cover,
+  .book-spine-crease {
+    display: none !important;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    perspective: none;
+    animation: none;
+  }
+
+  .book {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    perspective: none;
+    transform: none;
+    transform-style: flat;
+    gap: 0;
+  }
+
+  .book .book-page,
+  .book-page.page-left,
+  .book-page.page-right {
+    position: relative !important;
+    inset: auto !important;
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 0 1rem;
+    padding: 1.15rem;
+    overflow: visible !important;
+    transform: none !important;
+    transform-style: flat !important;
+    transition: none !important;
+    border-radius: 1rem;
+    background: var(--pages-color);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  }
+
+  .book-page.page-left {
+    z-index: 1 !important;
+  }
+
+  .book-page.page-right,
+  .book-page.page-right.turn,
+  .book-page.page-right.flipping {
+    z-index: 1 !important;
+    right: auto;
+    left: auto;
+    padding: 0 !important;
+    background: transparent;
+    box-shadow: none;
+    transform: none !important;
+  }
+
+  .book-page .page-front,
+  .book-page .page-back {
+    position: relative !important;
+    inset: auto !important;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 0 1rem;
+    padding: 1.15rem;
+    overflow: visible !important;
+    transform: none !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    border-radius: 0.8rem;
+    background: var(--pages-color);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  .book-page .page-front:last-child,
+  .book-page .page-back:last-child {
+    margin-bottom: 0;
+  }
+
+  .book-page.page-left::after,
+  .book-page .page-front::before,
+  .book-page .page-back::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .profile-page {
+    gap: 0.15rem;
+  }
+
+  .profile-page .avatar-container {
+    width: clamp(100px, 28vw, 145px);
+    height: clamp(100px, 28vw, 145px);
+    margin-bottom: 0.75rem;
+  }
+
+  .profile-page h1 {
+    font-size: clamp(1.65rem, 7vw, 2.1rem);
+    overflow-wrap: anywhere;
+  }
+
+  .profile-page h3 {
+    max-width: 100%;
+    font-size: clamp(0.95rem, 4vw, 1.05rem);
+  }
+
+  .profile-page p {
+    max-width: 38rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .profile-page .btn-box {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .btn {
+    min-height: 2.75rem;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .title {
+    font-size: clamp(1.4rem, 5.5vw, 1.75rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    overflow-wrap: anywhere;
+  }
+
+  .workeduc-box {
+    gap: 1.25rem;
+    padding-left: 1rem;
+  }
+
+  .workeduc-content h3 {
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+  }
+
+  .workeduc-content p,
+  .project-card p,
+  .cta-card p.description {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .skills-box {
+    gap: 1.15rem;
+  }
+
+  .skills-content-grid {
+    gap: 0.45rem;
+  }
+
+  .skill-badge {
+    max-width: 100%;
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+  }
+
+  .project-card {
+    padding: 0.9rem;
+  }
+
+  .project-card .proj-header {
+    gap: 0.5rem;
+  }
+
+  .project-card h3,
+  .project-card .tech-tag {
+    overflow-wrap: anywhere;
+  }
+
+  .cta-card {
+    width: 100%;
+    padding: 1.1rem;
+    gap: 0.85rem;
+  }
+
+  .cta-card h2 {
+    font-size: clamp(1.05rem, 4.8vw, 1.25rem);
+    overflow-wrap: anywhere;
+  }
+
+  .cta-hint {
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 1.5;
+  }
+
+  .contact-box,
+  .contact-form {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .contact-form .field {
+    min-width: 0;
+    min-height: 2.8rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .contact-form textarea.field {
+    min-height: 7rem;
+    height: 7rem;
+    resize: vertical;
+  }
+
+  .contact-details {
+    min-width: 0;
+    padding: 0.8rem;
+    gap: 0.65rem;
+  }
+
+  .contact-detail-item {
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+  }
+
+  .contact-detail-item a {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-detail-item button {
+    min-height: 1.9rem;
+  }
+
+  .number-page,
+  .nextprev-btn,
+  .back-profile {
+    display: none !important;
+  }
+
+  #turn-1,
+  #turn-2,
+  #turn-3,
+  #turn-1 .page-front,
+  #turn-1 .page-back,
+  #turn-2 .page-front,
+  #turn-2 .page-back,
+  #turn-3 .page-front,
+  #turn-3 .page-back,
+  .profile-page,
+  .contact-box {
+    scroll-margin-top: 0.75rem;
+  }
+
+  #root > div > footer {
+    display: none !important;
+  }
+
+  /* Keep modals usable on small screens. */
+  [role="dialog"] {
+    max-width: calc(100vw - 1.5rem);
+    max-height: calc(100dvh - 1.5rem);
+    overflow-y: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-page.page-right,
+  .book-page .page-front,
+  .book-page .page-back,
+  .profile-page .social-media a,
+  .project-card,
+  .skill-badge {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
