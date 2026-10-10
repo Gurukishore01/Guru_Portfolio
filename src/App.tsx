@@ -93,6 +93,20 @@ export default function App() {
   const [scale, setScale] = useState(1);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
+  // On phones, the book becomes a vertically stacked reading layout.
+  // These helpers make navigation buttons scroll to the corresponding card.
+  const isMobileLayout = () => window.matchMedia('(max-width: 767px)').matches;
+
+  const scrollToMobileSection = (selector: string) => {
+    if (!isMobileLayout()) return false;
+
+    const section = document.querySelector<HTMLElement>(selector);
+    if (!section) return false;
+
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return true;
+  };
+
   useEffect(() => {
     function handleResize() {
       const screenW = window.innerWidth;
@@ -247,6 +261,7 @@ export default function App() {
   // "Contact Me!" Button on Profile Page (from reference script.js):
   // Turns all leaves forward sequentially to land directly on Page 6
   const handleContactMeClick = () => {
+    if (scrollToMobileSection('#turn-3 .page-back')) return;
     if (animatingPage !== null || isOpening) return;
     playContactMeRapidFlipSound();
 
@@ -277,6 +292,7 @@ export default function App() {
   // Return to Profile (.back-profile on Page 6 from reference script.js):
   // Turns all leaves backward in reverse order to return to initial state
   const handleBackToProfile = () => {
+    if (scrollToMobileSection('.profile-page')) return;
     if (animatingPage !== null || isOpening) return;
     playPageFlipSound('backward');
 
@@ -360,7 +376,7 @@ export default function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          service_id: 'service_ymsgy9j',
+          service_id: 'service_ymsgsy9j',
           template_id: 'template_hw839p2',
           user_id: 'CwNc9T_1kQF3015Zw',
           template_params: {
@@ -433,6 +449,7 @@ export default function App() {
             </button>
             <button
               onClick={() => {
+                if (scrollToMobileSection('#turn-2 .page-front')) return;
                 if (!pagesTurned[0]) handlePageTurnForward(0);
                 if (pagesTurned[1]) handlePageTurnBackward(1);
                 if (pagesTurned[2]) handlePageTurnBackward(2);
@@ -446,6 +463,7 @@ export default function App() {
             </button>
             <button
               onClick={() => {
+                if (scrollToMobileSection('#turn-2 .page-back')) return;
                 if (!pagesTurned[0]) handlePageTurnForward(0);
                 if (!pagesTurned[1]) handlePageTurnForward(1);
                 if (pagesTurned[2]) handlePageTurnBackward(2);
@@ -895,7 +913,11 @@ export default function App() {
 
                   <button
                     className="btn next-cta-btn"
-                    onClick={() => handlePageTurnForward(2)}
+                    onClick={() => {
+                      if (!scrollToMobileSection('#turn-3 .page-back')) {
+                        handlePageTurnForward(2);
+                      }
+                    }}
                     style={{ width: '100%', marginTop: '0.2rem' }}
                   >
                     Hire Me / Get in Touch{' '}
