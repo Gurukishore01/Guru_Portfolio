@@ -625,7 +625,7 @@ export default function App() {
                 <div className="workeduc-box">
                   <div className="workeduc-content">
                     <span className="year">
-                      <i className="bx bxs-graduation"></i> Pursuing
+                      <i className="bx bxs-graduation"></i> 2022 - 2026
                     </span>
                     <h3>Paavai Engineering College (Autonomous)</h3>
                     <p>B.E. in Cybersecurity</p>
